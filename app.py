@@ -46,10 +46,10 @@ def processRequest(req):
     
     if (intent=='translate'):
 	   	text = result.get("parameters").get("text")
-	   	returntext=transliterate(text, xsanscript.ITRANS, xsanscript.KANNADA)
+	   	#returntext=transliterate(text, xsanscript.ITRANS, xsanscript.KANNADA)
 	   
 	   	
-	   	fulfillmentText= returntext
+	   	fulfillmentText= text
 	   	return {
             "fulfillmentText": fulfillmentText
         }
