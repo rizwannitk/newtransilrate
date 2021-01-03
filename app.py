@@ -5,6 +5,8 @@ import pickle
 import logging
 from logging.handlers import RotatingFileHandler
 from flask_cors import cross_origin
+from indic_transliteration import xsanscript
+from indic_transliteration.sanscript import SchemeMap, SCHEMES, transliterate
 
 app = Flask(__name__)
 #model = pickle.load(open('rf.pkl', 'rb'))
@@ -44,9 +46,10 @@ def processRequest(req):
     
     if (intent=='translate'):
 	   	text = result.get("parameters").get("text")
+	   	returntext=transliterate(text, xsanscript.ITRANS, xsanscript.KANNADA)
 	   
 	   	
-	   	fulfillmentText= "entered text is   {}".format(text)
+	   	fulfillmentText= returntext
 	   	return {
             "fulfillmentText": fulfillmentText
         }
