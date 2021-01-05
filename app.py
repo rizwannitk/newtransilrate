@@ -50,25 +50,30 @@ def processRequest(req):
 	   	returntext=transliterate(text, xsanscript.ITRANS, xsanscript.KANNADA)
 	   
 	   	
-	   	fulfillmentText= returntext
+	   	#fulfillmentText= returntext
 	   	return {
             "fulfillmentText": fulfillmentText
         }
     
     if (intent=='imageresponse'):
-	   	text = result.get("parameters").get("text")
-	   	returntext=text
-	   
-	   	
-	   	fulfillmentText= returntext
-	   	return {
-            "fulfillmentText": fulfillmentText
-        }    
-            #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
+    	if action == 'getimage':
+            fulfillmentText = 'Suggestion chips Response from webhook'
+            print("inside image")
+            aog = actions_on_google_response()
+            aog_sr = aog.simple_response([
+            [fulfillmentText, fulfillmentText, False]
+            ])
+            
+            #log.write_log(sessionID, aog_sc = aog.suggestion_chips(["suggestion1", "suggestion2"])
+            aog_sc = aog.suggestion_chips(["suggestion1", "suggestion2"])
+            ff_response = fulfillment_response()
+            ff_text = ff_response.fulfillment_text(fulfillmentText)
+            ff_messages = ff_response.fulfillment_messages([aog_sr, aog_sc])
+            reply = ff_response.main_response(ff_text, ff_messages)
                 
     #user_says=result.get("queryText")
     #log.write_log(sessionID, "User Says: "+user_says)
-    
+    return JsonResponse(reply, safe=False)
 	       
 if __name__ == '__main__':
     app.run()
