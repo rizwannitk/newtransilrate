@@ -42,6 +42,7 @@ def processRequest(req):
     print(result)
 
     intent = result.get("intent").get('displayName')
+    action = result.get('action')
 	
 	#log.write_log(sessionID, "Bot Says: "+intent)
     
