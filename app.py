@@ -54,7 +54,16 @@ def processRequest(req):
 	   	return {
             "fulfillmentText": fulfillmentText
         }
-        
+    
+    if (intent=='imageresponse'):
+	   	text = result.get("parameters").get("text")
+	   	returntext=text
+	   
+	   	
+	   	fulfillmentText= returntext
+	   	return {
+            "fulfillmentText": fulfillmentText
+        }    
             #log.write_log(sessionID, "Bot Says: "+fulfillmentText)
                 
     #user_says=result.get("queryText")
