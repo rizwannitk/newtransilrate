@@ -86,9 +86,8 @@ def processRequest(req):
                 
     #user_says=result.get("queryText")
     #log.write_log(sessionID, "User Says: "+user_says)
-    return {
-            "fulfillmentText": fulfillmentText
-        }
+    return fulfillment_messages
+        
 	       
 if __name__ == '__main__':
     app.run()
