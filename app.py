@@ -50,7 +50,7 @@ def processRequest(req):
 	   	returntext=transliterate(text, xsanscript.ITRANS, xsanscript.KANNADA)
 	   
 	   	
-	   	#fulfillmentText= returntext
+	   	fulfillmentText= returntext
 	   	return {
             "fulfillmentText": fulfillmentText
         }
