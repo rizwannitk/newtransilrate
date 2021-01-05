@@ -86,7 +86,21 @@ def processRequest(req):
                 
     #user_says=result.get("queryText")
     #log.write_log(sessionID, "User Says: "+user_says)
-    return fulfillment_messages
+    return {
+            "fulfillmentMessages": [
+              {
+                "card": {
+                  "title": "new",
+                  "buttons": [
+                    {
+                      "text": "old"
+                    }
+                  ]
+                },
+                "platform": "TELEGRAM"
+              }
+            ]
+        }
         
 	       
 if __name__ == '__main__':
