@@ -59,22 +59,36 @@ def processRequest(req):
     if (intent=='imageresponse'):
     	if action == 'getimage':
             fulfillmentText = 'Suggestion chips Response from webhook'
-            print("inside image")
-            aog = actions_on_google_response()
-            aog_sr = aog.simple_response([
-            [fulfillmentText, fulfillmentText, False]
-            ])
+            #print("inside image")
+            #aog = actions_on_google_response()
+            #aog_sr = aog.simple_response([
+            #[fulfillmentText, fulfillmentText, False]
+            #])
             
             #log.write_log(sessionID, aog_sc = aog.suggestion_chips(["suggestion1", "suggestion2"])
-            aog_sc = aog.suggestion_chips(["suggestion1", "suggestion2"])
-            ff_response = fulfillment_response()
-            ff_text = ff_response.fulfillment_text(fulfillmentText)
-            ff_messages = ff_response.fulfillment_messages([aog_sr, aog_sc])
-            reply = ff_response.main_response(ff_text, ff_messages)
+            #aog_sc = aog.suggestion_chips(["suggestion1", "suggestion2"])
+            #ff_response = fulfillment_response()
+            #ff_text = ff_response.fulfillment_text(fulfillmentText)
+            #ff_messages = ff_response.fulfillment_messages([aog_sr, aog_sc])
+            #reply = ff_response.main_response(ff_text, ff_messages)
+            fulfillment_messages=[
+               {
+                   "payload": {
+                       "richContent": [[{
+                           "actionLink": "https://assistant.google.com/",
+                           "subtitle": "This is the body text of a card.  You can even use line\n  breaks and emoji! 💁",
+                           "title": "Title: this is a card title",
+                           "type": "info"
+                       }]]
+                   }
+               }
+            ]
                 
     #user_says=result.get("queryText")
     #log.write_log(sessionID, "User Says: "+user_says)
-    return reply
+    return {
+            "fulfillmentText": fulfillmentText
+        }
 	       
 if __name__ == '__main__':
     app.run()
