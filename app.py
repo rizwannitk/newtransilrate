@@ -74,7 +74,7 @@ def processRequest(req):
                 
     #user_says=result.get("queryText")
     #log.write_log(sessionID, "User Says: "+user_says)
-    return JsonResponse(reply, safe=False)
+    return reply
 	       
 if __name__ == '__main__':
     app.run()
